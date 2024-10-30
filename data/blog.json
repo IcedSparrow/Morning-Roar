@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "title": {
+            "pl": "Odkrywanie nowych mieszanki kaw",
+            "en": "Exploring New Coffee Blends"
+        },
+        "content": {
+            "pl": "Odkryj nasze najnowsze mieszanki z Ameryki Południowej. Zebraliśmy unikalne ziarna, które podniosą twoje doświadczenie kawowe. Od owocowych nut po bogate ciemne palenia, każdy znajdzie coś dla siebie.",
+            "en": "Discover our latest blends from South America. We have sourced unique beans that will elevate your coffee experience. From fruity notes to rich dark roasts, there's something for every palate."
+        },
+        "image": "https://www.w3schools.com/w3images/coffee1.jpg"
+    },
+    {
+        "id": 2,
+        "title": {
+            "pl": "Sztuka parzenia kawy",
+            "en": "The Art of Brewing"
+        },
+        "content": {
+            "pl": "Naucz się, jak zrobić idealną filiżankę kawy. Techniki parzenia różnią się, a każda metoda ma swój unikalny profil smaku. Dołącz do nas w odkrywaniu świata parzenia kawy!",
+            "en": "Learn how to make the perfect cup of coffee. Brewing techniques vary, and each method has its unique flavor profile. Join us as we dive into the world of coffee brewing!"
+        },
+        "image": "https://www.w3schools.com/w3images/coffee2.jpg"
+    },
+    {
+        "id": 3,
+        "title": {
+            "pl": "Zrozumienie odmian kawy",
+            "en": "Understanding Coffee Varieties"
+        },
+        "content": {
+            "pl": "Kawa występuje w wielu odmianach, z których każda ma swoje unikalne smaki i aromaty. Ten post bada różnice między ziarnami Arabica i Robusta oraz ich wpływ na twoją filiżankę.",
+            "en": "Coffee comes in many varieties, each with distinct flavors and aromas. This post explores the differences between Arabica and Robusta beans and how they affect your cup."
+        },
+        "image": "https://www.w3schools.com/w3images/coffee3.jpg"
+    },
+    {
+        "id": 4,
+        "title": {
+            "pl": "Korzyści z picia kawy",
+            "en": "The Benefits of Drinking Coffee"
+        },
+        "content": {
+            "pl": "Czy wiesz, że kawa jest bogata w przeciwutleniacze i korzystne składniki odżywcze? Ten post omawia różnorodne korzyści zdrowotne płynące z picia filiżanki kawy każdego dnia.",
+            "en": "Did you know that coffee is loaded with antioxidants and beneficial nutrients? This post discusses the various health benefits of enjoying a cup of coffee each day."
+        },
+        "image": "https://www.w3schools.com/w3images/coffee4.jpg"
+    },
+    {
+        "id": 5,
+        "title": {
+            "pl": "Parowanie kawy: idealne połączenia",
+            "en": "Coffee Pairing: The Perfect Matches"
+        },
+        "content": {
+            "pl": "Dowiedz się, jak łączyć kawę z jedzeniem, aby uzyskać najlepsze kombinacje smakowe. Od śniadaniowych wypieków po dania wytrawne, odkryj, która kawa uzupełnia twoje posiłki.",
+            "en": "Learn how to pair coffee with food for the best flavor combinations. From breakfast pastries to savory dishes, find out which coffee complements your meal."
+        },
+        "image": "https://www.w3schools.com/w3images/coffee5.jpg"
+    },
+    {
+        "id": 6,
+        "title": {
+            "pl": "Zrównoważone praktyki kawowe",
+            "en": "Sustainable Coffee Practices"
+        },
+        "content": {
+            "pl": "Zrównoważoność w produkcji kawy jest kluczowa dla ochrony środowiska i wspierania lokalnych rolników. Ten post podkreśla znaczenie zrównoważonych praktyk kawowych.",
+            "en": "Sustainability in coffee production is essential for protecting the environment and supporting local farmers. This post highlights the importance of sustainable coffee practices."
+        },
+        "image": "https://www.w3schools.com/w3images/coffee6.jpg"
+    },
+    {
+        "id": 7,
+        "title": {
+            "pl": "Kawa na całym świecie",
+            "en": "Coffee Around the World"
+        },
+        "content": {
+            "pl": "Zbadaj, jak różne kultury cieszą się kawą. Od tureckiej kawy po włoskie espresso, odkryj unikalne tradycje kawowe z całego świata.",
+            "en": "Explore how different cultures enjoy coffee. From Turkish coffee to Italian espresso, discover the unique coffee traditions from around the globe."
+        },
+        "image": "https://www.w3schools.com/w3images/coffee7.jpg"
+    },
+    {
+        "id": 8,
+        "title": {
+            "pl": "Podstawy parzenia kawy w domu",
+            "en": "Home Coffee Brewing Essentials"
+        },
+        "content": {
+            "pl": "Chcesz parzyć kawę jak profesjonalista w domu? Ten post obejmuje niezbędne narzędzia i sprzęt potrzebny do idealnego parzenia kawy w domu.",
+            "en": "Want to brew coffee like a pro at home? This post covers the essential tools and equipment you need for the perfect home brewing experience."
+        },
+        "image": "https://www.w3schools.com/w3images/coffee8.jpg"
+    }
+]

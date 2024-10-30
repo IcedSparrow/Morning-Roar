@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawa Dolce - Landing Page</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            font-family: "Inconsolata", monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .coffee-image {
+            width: 400px;
+            height: 400px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .details-container {
+            flex: 1;
+            margin-left: 30px;
+        }
+        .coffee-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .price-section {
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-right: 10px;
+        }
+        .promo-price {
+            color: red;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .buy-button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #333;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .buy-button:hover {
+            background-color: #555;
+        }
+        .info-section {
+            margin-top: 20px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #333;
+        }
+        .features-section{
+            display: none;
+            margin-top: 20px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #333;
+        }
+        .features-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .features-table th, .features-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .features-table th {
+            background-color: #333;
+            color: white;
+        }
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+        .button-group button:hover {
+            background-color: #eee;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 600px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* Stylizacja sekcji opinii */
+        .testimonials {
+            background: #f8f9fa;
+            padding: 50px 0;
+            position: relative; /* Umożliwia przesuwanie */
+            overflow: hidden; /* Ukrywa nadmiar */
+        }
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em; /* Powiększona czcionka */
+        }
+        .testimonial-container {
+            display: flex;
+            position: relative; /* Pozycja względna dla animacji */
+            width: 100%;
+            animation: slide 15s linear infinite; /* Animacja przesuwania */
+        }
+        .testimonial-wrapper {
+            display: flex; /* Flexbox dla wielokrotnego wyświetlenia opinii */
+        }
+        .testimonial-item {
+            min-width: 300px; /* Minimalna szerokość dla każdego elementu */
+            padding: 20px;
+            margin: 0 10px;
+            background: #fff;
+            border-radius: 10px; /* Zaokrąglenie rogów */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Cień */
+            text-align: center;
+        }
+        .testimonial-item p {
+            font-style: italic;
+            color: #666; /* Szary kolor tekstu opisu */
+            margin-bottom: 10px;
+        }
+        .testimonial-item h4 {
+            font-weight: bold;
+            color: #007bff; /* Kolor nagłówków klientów */
+        }
+
+        /* Animacja przesuwania */
+        @keyframes slide {
+            0% {
+                transform: translateX(0); /* Początkowa pozycja */
+            }
+            20% {
+                transform: translateX(-300px);
+            }
+            40% {
+                transform: translateX(-600px);
+            }
+            60% {
+                transform: translateX(-900px);
+            }
+            80% {
+                transform: translateX(-1200px);
+            }
+            100% {
+                transform: translateX(-1500px); /* Przesunięcie końcowe */
+            }
+        }
+
+        .back-button {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #000000;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #555;
+        }
+        footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="w3-container w3-padding-32 w3-black">
+    <h1 class="w3-center">Limitowana kawa Bialetti Dolce & Gabbana</h1>
+    <a href="index.html" class="back-button">Powrót na stronę główną</a> <!-- Przycisk powrotu dodany do nagłówka -->
+</header>
+
+<!-- Main Coffee Section -->
+<div class="main-container">
+    <!-- Zdjęcie kawy -->
+    <img src="/assets/images/dolcekawa.jpg" alt="Kawa Dolce" class="coffee-image" onclick="openModal()">
+
+    <!-- Detale kawy -->
+    <div class="details-container">
+        <div class="coffee-name">Bialetti Dolce & Gabbana</div>
+        
+        <!-- Sekcja ceny -->
+        <div class="price-section">
+            <span id="price-title">Cena:</span>
+            <span class="original-price" id="original-price">99,99 zł</span>
+            <span class="promo-price" id="current-price">79,99 zł</span> (promocja!)
+        </div>
+
+        <!-- Przycisk Kup Teraz -->
+        <a href="https://1ct.eu/5Dm8a" class="buy-button">Kup Teraz</a>
+
+        <!-- Grupa przycisków Opis i Cechy -->
+        <div class="button-group">
+            <button onclick="showSection('info')">Opis</button>
+            <button onclick="showSection('features')">Cechy</button>
+        </div>
+
+        <!-- Opis kawy -->
+<div id="info" class="info-section">
+    <p>Przenieś się do słonecznej Italii z każdym łykiem limitowanej kawy Bialetti Dolce & Gabbana. Ta wyjątkowa mieszanka 80% arabiki i 20% robusty to prawdziwa esencja włoskiej tradycji picia kawy, gdzie elegancja owocowych nut harmonijnie łączy się z delikatnym posmakiem karmelu.</p>
+    <p>Perfetto Moka Autentico to nie tylko kawa, to zaproszenie do odkrycia bogactwa smaków Morza Śródziemnego. Opakowanie inspirowane sycylijską majoliką, stworzone przez Dolce & Gabbana, dodaje temu produktowi jeszcze większego prestiżu, zamieniając każdą poranną filiżankę w wyjątkowe przeżycie. To prawdziwe dzieło sztuki, które łączy w sobie doskonały styl i niezapomniany smak, idealne na prezent lub jako luksusowy dodatek do Twojego dnia.</p>
+    <p>Pozwól sobie na chwilę wytchnienia i delektuj się autentycznym włoskim rytuałem z kawą Bialetti Dolce & Gabbana. Odkryj smak, który zachwyca i styl, który inspiruje. Nie czekaj – zamów teraz i zanurz się w luksusie włoskiej kawy!</p>
+</div>
+
+
+        <!-- Cechy kawy -->
+        <div id="features" class="features-section">
+            <table class="features-table">
+                <tr>
+                    <th>Cecha</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>Producent</td>
+                    <td>Bialetti Dolce & Gabbana</td>
+                </tr>
+                <tr>
+                    <td>Opakowanie</td>
+                    <td>200 g</td>
+                </tr>
+                <tr>
+                    <td>Rodzaj kawy</td>
+                    <td>Mielona</td>
+                </tr>
+                <tr>
+                    <td>Arabica / Robusta</td>
+                    <td>Blend</td>
+                </tr>
+                <tr>
+                    <td>Stopień palenia ziaren</td>
+                    <td>Ciemny</td>
+                </tr>
+                <tr>
+                    <td>Przeznaczenie</td>
+                    <td>Espresso</td>
+                </tr>
+                <tr>
+                    <td>Pełna nazwa producenta</td>
+                    <td>Bialetti Industrie S.P.A. Via Fogliano 1 25030 Coccaglio, Italy / Włochy</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Opinie Klientów -->
+<section class="testimonials">
+    <h2>Opinie Klientów</h2>
+    <div class="testimonial-container">
+        <div class="testimonial-wrapper">
+            <div class="testimonial-item">
+                <p>"Najlepsza kawa, jaką piłem! Aromatyczna i pełna smaku!"</p>
+                <h4>Jan Kowalski</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Wyjątkowy smak i piękne opakowanie. Idealna na prezent."</p>
+                <h4>Anna Nowak</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Kawa doskonała do espresso. Zdecydowanie polecam!"</p>
+                <h4>Krzysztof Wiśniewski</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Kupiłem ją dla mojej żony i oboje jesteśmy zachwyceni!"</p>
+                <h4>Marek Nowicki</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Wspaniała kawa, smakuje jak we Włoszech. Z pewnością kupię ponownie!"</p>
+                <h4>Maria Kowalska</h4>
+            </div>
+            <!-- Powtórzenie opinii dla płynnego przesuwania -->
+            <div class="testimonial-item">
+                <p>"Najlepsza kawa, jaką piłem! Aromatyczna i pełna smaku!"</p>
+                <h4>Jan Kowalski</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Wyjątkowy smak i piękne opakowanie. Idealna na prezent."</p>
+                <h4>Anna Nowak</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Kawa doskonała do espresso. Zdecydowanie polecam!"</p>
+                <h4>Krzysztof Wiśniewski</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Kupiłem ją dla mojej żony i oboje jesteśmy zachwyceni!"</p>
+                <h4>Marek Nowicki</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Wspaniała kawa, smakuje jak we Włoszech. Z pewnością kupię ponownie!"</p>
+                <h4>Maria Kowalska</h4>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="w3-container w3-padding-32 w3-black">
+    <p id="footer-text">&copy; Stworzone z miłością przez Morning Roar.</p>
+  </footer>
+<script>
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+    function showSection(sectionId) {
+        var infoSection = document.getElementById("info");
+        var featuresSection = document.getElementById("features");
+
+        if (sectionId === 'info') {
+            infoSection.style.display = 'block';
+            featuresSection.style.display = 'none';
+        } else if (sectionId === 'features') {
+            featuresSection.style.display = 'block';
+            infoSection.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>

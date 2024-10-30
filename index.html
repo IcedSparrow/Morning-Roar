@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morning Roar - Cafe</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    #language-switch {
+      background-color: #444;
+      color: white;
+      margin: 0 auto;
+      display: block;
+      width: 100px;
+    }
+    #language-switch:hover {
+      background-color: #555;
+    }
+    .coffee-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+      display: block;
+      cursor: pointer;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 900px;
+    }
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /* Style for blog posts */
+    .blog-post {
+      height: 350px; /* Fixed height for uniformity */
+      overflow: hidden; /* Hide overflow */
+      display: flex; /* Flexbox for alignment */
+      flex-direction: column; /* Vertical arrangement */
+      justify-content: space-between; /* Space evenly */
+      margin-bottom: 20px; /* Space between posts */
+      border-radius: 8px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+      transition: transform 0.2s; /* Animation for hover effect */
+    }
+    .blog-post:hover {
+      transform: scale(1.05); /* Scale effect on hover */
+    }
+    .blog-post img {
+      width: 100%; /* Full width for images */
+      height: 150px; /* Fixed height for images */
+      object-fit: cover; /* Cover to fit image */
+      border-top-left-radius: 8px; /* Rounded top corners */
+      border-top-right-radius: 8px; /* Rounded top corners */
+    }
+    .blog-post h6 {
+      margin: 10px 0; /* Margin around titles */
+      font-weight: bold; /* Bold titles */
+      font-size: 1.2em; /* Title font size */
+    }
+    .blog-post p {
+      flex-grow: 1; /* Allow text to take available space */
+      overflow: hidden; /* Hide overflow */
+      text-overflow: ellipsis; /* Ellipsis for overflow */
+      display: -webkit-box; /* Flexbox for clamping text */
+      -webkit-line-clamp: 4; /* Clamp to 4 lines */
+      -webkit-box-orient: vertical; /* Vertical orientation */
+      font-size: 14px; /* Fixed font size */
+      color: #555; /* Subtle text color */
+    }
+    .blog-container {
+      display: flex;
+      flex-wrap: wrap; /* Wrap for multiple columns */
+      justify-content: space-between; /* Space between items */
+    }
+  </style>
+</head>
+<body>
+
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block w3-black" id="home-link">STRONA GŁÓWNA</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#about" class="w3-button w3-block w3-black" id="about-link">O KAWIARENCE</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#menu" class="w3-button w3-block w3-black" id="kawa-link">KAWA</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#blog" class="w3-button w3-block w3-black" id="blog-link">BLOG</a>
+    </div>
+    <div class="w3-col s3">
+      <button class="w3-button w3-block w3-black" id="language-switch" onclick="toggleLanguage()">PL / EN</button>
+    </div>
+  </div>
+</div>
+
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px" id="header-title">Morning<br>Roar</span>
+  </div>
+</header>
+
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide" id="about-title">O KAWIARENCE</span></h5>
+    <p id="about-text">Poranne Ryk został założony w celu oferowania najlepszej kawy z całego świata. Doświadcz smaku starannie wyselekcjonowanych ziaren, wypalonych do perfekcji.</p>
+    <img src="https://www.w3schools.com/w3images/coffeeshop.jpg" style="width:100%;max-width:1000px" class="w3-margin-top">
+    <p><strong id="hours-title">Godziny otwarcia:</strong> codziennie od 6:00 do 17:00.</p>
+    <p><strong id="address-title">Adres:</strong> ul. Adr 15, 5015, NY</p>
+  </div>
+</div>
+
+<div class="w3-container" id="menu">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide" id="menu-title">KAWA</span></h5>
+    <div class="w3-container menu w3-padding-48 w3-card">
+      <h5 class="w3-xlarge" id="coffee-title">Limitowana kawa Bialetti Dolce & Gabbana</h5>
+      <img src="/assets/images/dolcekawa.jpg" alt="Kawa Americano" class="coffee-image" id="coffee-img" onclick="openModal()">
+      <p class="w3-text-grey" id="coffee-description">Przenieś się do słonecznej Italii z każdym łykiem limitowanej kawy Bialetti Dolce & Gabbana...</p>
+      <p style="font-size:24px; color:red; font-weight:bold;">
+        <span id="price-title">Cena:</span> <span style="text-decoration: line-through;" id="original-price">99,99 zł</span> <span id="current-price">79,99 zł </span> 
+      </p>
+      <a href="https://1ct.eu/5Dm8a" class="w3-button w3-black w3-padding-large" id="buy-button">Kup Teraz</a>
+      <a href="kawadolce.html" class="w3-button w3-black w3-padding-large" id="more-button">Zobacz Więcej</a>
+    </div>  
+  </div>
+</div>
+
+<div class="w3-container" id="blog">
+  <div class="w3-content" style="max-width:900px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide" id="blog-title">BLOG</span></h5>
+    <p class="w3-center" id="blog-text">Odkryj świat kawy poprzez nasz blog. Kliknij na post, aby przeczytać więcej!</p>
+    <div id="blog-posts" class="blog-container w3-row-padding w3-grayscale"></div>
+    <div class="w3-center">
+      <a href="blog.html" class="w3-button w3-black" id="more-button-blog">Zobacz Więcej</a>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+<footer class="w3-container w3-padding-32 w3-black">
+  <p id="footer">&copy; Stworzone z miłością przez Morning Roar.</p>
+</footer>
+
+<script>
+    let currentLanguage = 'pl'; // Default language
+
+    function toggleLanguage() {
+        currentLanguage = currentLanguage === 'pl' ? 'en' : 'pl';
+        updateLanguage(currentLanguage);
+    }
+
+    function updateLanguage(language) {
+        const translation = {
+            pl: {
+                "blog-title": "BLOG",
+                "blog-text": "Odkryj świat kawy poprzez nasz blog. Kliknij na post, aby przeczytać więcej!",
+                "about-title": "O KAWIARENCE",
+                "about-text": "Morning Roar został założony w celu oferowania najlepszej kawy z całego świata. Doświadcz smaku starannie wyselekcjonowanych ziaren, wypalonych do perfekcji.",
+                "hours-title": "Godziny otwarcia:",
+                "address-title": "Adres:",
+                "menu-title": "KAWA",
+                "coffee-title": "Limitowana kawa Bialetti Dolce & Gabbana",
+                "coffee-description": "Przenieś się do słonecznej Italii z każdym łykiem limitowanej kawy Bialetti Dolce & Gabbana...",
+                "price-title": "Cena:",
+                "original-price": "99,99 zł",
+                "current-price": "79,99 zł",
+                "current-price": "(Promocja!)",
+                "more-button": "Zobacz więcej",
+                "buy-button": "Kup Teraz",
+                "more-button-blog": "Zobacz więcej",
+                "footer": "Stworzone z miłością przez Morning Roar.",
+                "about-link": "O KAWIARNI",
+                "kawa-link": "KAWA"
+            },
+            en: {
+                "blog-title": "BLOG",
+                "blog-text": "Discover the world of coffee through our blog. Click on a post to read more!",
+                "about-title": "ABOUT THE CAFÉ",
+                "about-text": "Morning Roar was established to offer the best coffee from around the world. Experience the flavor of carefully selected beans, roasted to perfection.",
+                "hours-title": "Opening Hours:",
+                "address-title": "Address:",
+                "menu-title": "COFFEE",
+                "coffee-title": "Bialetti Dolce & Gabbana limited edition coffee",
+                "coffee-description": "Transport yourself to sunny Italy with every sip of limited edition Bialetti Dolce & Gabbana coffee....",
+                "price-title": "Price:",
+                "original-price": "24.99 USD",
+                "current-price": "19.99 USD",
+                "current-price": "(Promotion!)",
+                "more-button": "See more",
+                "buy-button": "Buy now",
+                "more-button-blog": "See more",
+                "footer": "Created with love by Morning Roar.",
+                "about-link": "ABOUT",
+                "kawa-link": "COFFEE"
+            }
+        };
+
+        // Update HTML content based on the selected language
+        document.getElementById('blog-title').innerHTML = translation[language]['blog-title'];
+        document.getElementById('blog-text').innerHTML = translation[language]['blog-text'];
+        document.getElementById('about-title').innerHTML = translation[language]['about-title'];
+        document.getElementById('about-text').innerHTML = translation[language]['about-text'];
+        document.getElementById('hours-title').innerHTML = translation[language]['hours-title'];
+        document.getElementById('address-title').innerHTML = translation[language]['address-title'];
+        document.getElementById('menu-title').innerHTML = translation[language]['menu-title'];
+        document.getElementById('coffee-title').innerHTML = translation[language]['coffee-title'];
+        document.getElementById('coffee-description').innerHTML = translation[language]['coffee-description'];
+        document.getElementById('price-title').innerHTML = translation[language]['price-title'];
+        document.getElementById('original-price').innerHTML = translation[language]['original-price'];
+        document.getElementById('current-price').innerHTML = translation[language]['current-price'];
+        document.getElementById('current-price').innerHTML = translation[language]['current-price'];
+        document.getElementById('more-button').innerHTML = translation[language]['more-button'];
+        document.getElementById('buy-button').innerHTML = translation[language]['buy-button'];
+        document.getElementById('more-button-blog').innerHTML = translation[language]['more-button-blog'];
+        document.getElementById('footer').innerHTML = translation[language]['footer'];
+        document.getElementById('kawa-link').innerHTML = translation[language]['kawa-link'];
+
+        loadBlogPosts(language); // Load blog posts in the selected language
+    }
+
+    function loadBlogPosts(language) {
+        fetch(language === 'pl' ? '/data/blog_posts_pl.json' : '/data/blog_posts_en.json')
+            .then(response => response.json())
+            .then(data => {
+                const blogPostsContainer = document.getElementById('blog-posts');
+                blogPostsContainer.innerHTML = ''; // Clear existing posts
+
+                data.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'w3-col s12 m6 l4 w3-margin-bottom'; // Responsive columns
+                    postElement.innerHTML = `
+                        <div class="blog-post w3-card w3-hover-shadow">
+                            <img src="${post.image}" alt="${post.title}">
+                            <div class="w3-container">
+                                <h6><b>${post.title}</b></h6>
+                                <p>${post.excerpt}</p>
+                                <a href="post.html?id=${post.id}&lang=${language}" class="w3-button w3-black">${language === 'pl' ? 'Czytaj więcej' : 'Read More'}</a>
+                            </div>
+                        </div>
+                    `;
+                    blogPostsContainer.appendChild(postElement);
+                });
+            });
+    }
+
+    // Load initial content
+    loadBlogPosts(currentLanguage); // Load posts in default language
+
+    // Modal Image Handling
+    function openModal() {
+      const modal = document.getElementById("myModal");
+      const img = document.getElementById("coffee-img");
+      const modalImg = document.getElementById("img01");
+      const captionText = document.getElementById("caption");
+      modal.style.display = "block";
+      modalImg.src = img.src;
+      captionText.innerHTML = img.alt;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+</script>
+
+</body>
+</html>

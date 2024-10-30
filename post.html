@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Post Details - Morning Roar</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .post-title {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .post-date {
+            color: grey;
+        }
+        .post-content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="w3-container w3-black">
+    <h1 class="w3-center" id="post-title"></h1>
+</div>
+
+<div class="container">
+    <p class="post-date" id="post-date"></p>
+    <div class="post-content" id="post-content"></div>
+    <button class="w3-button w3-black" onclick="window.history.back()">Wróć do bloga</button>
+</div>
+
+<footer class="w3-container w3-padding-32 w3-black">
+    <p id="footer-text">&copy; Stworzone z miłością przez Morning Roar.</p>
+</footer>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    const lang = urlParams.get('lang') || 'pl'; // Default to Polish if no lang is specified
+
+    // Load blog data from JSON based on the language
+    fetch(lang === 'pl' ? '/data//blog_posts_pl.json' : '/data/blog_posts_en.json')
+        .then(response => response.json())
+        .then(data => {
+            const post = data.find(p => p.id == postId);
+            if (post) {
+                document.getElementById('post-title').innerText = post.title;
+                document.getElementById('post-date').innerText = new Date(post.date).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US');
+                document.getElementById('post-content').innerHTML = `
+                    <div class="w3-card">
+                        <img src="${post.image}" alt="${post.title}" style="width:100%">
+                        <div class="w3-container">
+                            <h3>${post.title}</h3>
+                            <p>${post.content}</p>
+                        </div>
+                    </div>`;
+            } else {
+                document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
+            }
+        })
+        .catch(error => console.error('Error loading blog data:', error));
+</script>
+
+</body>
+</html>

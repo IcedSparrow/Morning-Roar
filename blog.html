@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Cafe - Blog</title>
+    <style>
+        /* Dodatkowe style dla estetyki bloga */
+        body {
+            font-family: 'Inconsolata', sans-serif;
+        }
+        .blog-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #333;
+        }
+        .blog-post {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .blog-post img {
+            width: 100%;
+            height: 200px; /* Ustalona wysokość dla obrazów */
+            object-fit: cover;
+        }
+        .blog-post h3 {
+            margin: 10px;
+            font-size: 24px;
+            color: #444;
+        }
+        .blog-post p {
+            margin: 10px;
+            color: #666;
+        }
+        .blog-post a {
+            margin: 10px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+    <div class="w3-row w3-padding w3-black">
+        <div class="w3-col s3">
+            <a href="index.html" class="w3-button w3-block w3-black">HOME</a>
+        </div>
+        <div class="w3-col s3">
+            <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+        </div>
+        <div class="w3-col s3">
+            <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
+        </div>
+        <div class="w3-col s3">
+            <a href="#" class="w3-button w3-block w3-black">BLOG</a>
+        </div>
+        <div class="w3-col s3">
+            <select id="language" class="w3-select w3-border" onchange="changeLanguage()">
+                <option value="pl" selected>Polski</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Blog Section -->
+<div class="w3-container" id="blog" style="padding: 20px;">
+    <h2 class="blog-title w3-center">Blog</h2>
+    <div id="blogPosts" class="w3-row-padding"></div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-black">
+    <p id="footer-text">&copy; Stworzone z miłością przez Morning Roar.</p>
+</footer>
+
+<script>
+    // Function to change language and reload posts
+    function changeLanguage() {
+        const lang = document.getElementById('language').value;
+        loadBlogPosts(lang);
+    }
+
+    // Load blog posts from JSON
+    function loadBlogPosts(lang) {
+        fetch(lang === 'pl' ? '/data/blog_posts_pl.json' : '/data/blog_posts_en.json')
+            .then(response => response.json())
+            .then(data => {
+                const blogContainer = document.getElementById('blogPosts');
+                blogContainer.innerHTML = ''; // Clear existing posts
+                data.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'w3-col s12 m6 l4 w3-padding';
+                    postDiv.innerHTML = `
+                        <div class="blog-post">
+                            <img src="${post.image}" alt="${post.title}">
+                            <div class="w3-container">
+                                <h3>${post.title}</h3>
+                                <p>${post.content.substring(0, 100)}...</p>
+                                <a href="post.html?id=${post.id}&lang=${lang}" class="w3-button w3-black">Czytaj więcej</a>
+                            </div>
+                        </div>
+                    `;
+                    blogContainer.appendChild(postDiv);
+                });
+            })
+            .catch(error => console.error('Error loading blog data:', error));
+    }
+
+    // Initial load of blog posts in default language
+    loadBlogPosts('pl');
+</script>
+
+</body>
+</html>
